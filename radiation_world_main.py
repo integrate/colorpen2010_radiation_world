@@ -1,4 +1,4 @@
-import wrap
+import wrap,random
 
 # world
 wrap.add_sprite_dir("sprite's")
@@ -8,6 +8,9 @@ wrap.world.set_back_image("sprite's/world/ground-texture_(32).jpg")
 semla = wrap.sprite.add('world', 500, 900, 'lol')
 # geroy_1
 geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1')
+@wrap.always(2000)
+def wrag():
+    wrag1=wrap.sprite.add('wrag_enemy',random.randint(-1000,1920),random.randint(-1000,1920))
 
 
 @wrap.on_mouse_move()
@@ -23,6 +26,7 @@ def sdvin_mir():
 
     wrap.sprite.move(semla, -yholpox, -yholpoy)
     wrap.sprite.move(geroy, -yholpox, -yholpoy)
+    wrap.sprite.move(wrag1, -yholpox, -yholpoy)
 
 
 @wrap.on_key_always(wrap.K_w)
