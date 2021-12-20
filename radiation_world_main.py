@@ -1,27 +1,32 @@
-import wrap,random
-
-
+import wrap, random
 
 # world
 wrap.add_sprite_dir("sprite's")
 wrap.world.create_world(1920, 1080)
 wrap.world.set_title('2 player game')
 wrag2 = []
+spisoc_potronov=[]
 wrap.world.set_back_image("sprite's/world/ground-texture_(32).jpg")
 semla = wrap.sprite.add('world', 500, 900, 'lol')
 # geroy_1
 geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1')
+
+
 @wrap.always(20000)
 def wrag():
-    wrag1=wrap.sprite.add('wrag_enemy', random.randint(0, 1920), random.randint(0, 1080))
+    wrag1 = wrap.sprite.add('wrag_enemy', random.randint(0, 1920), random.randint(0, 1080))
     wrag2.append(wrag1)
+
 
 @wrap.on_mouse_down(wrap.BUTTON_LEFT)
 def zastrelu(pos_x, pos_y):
     global avtomat_potron
-    avtomat_potron=wrap.sprite.add('pyli',1920/2,1080/2)
-    wrap.sprite.set_angle(avtomat_potron,wrap.sprite.get_angle(geroy))
-    wrap.sprite.move_at_angle_point()
+    avtomat_potron = wrap.sprite.add('pyli', 960, 540)
+    wrap.sprite.set_angle(avtomat_potron, wrap.sprite.get_angle(geroy))
+    what = wrap.sprite.get_angle(geroy)
+    wrap.sprite.move_at_angle(avtomat_potron, what, 45)
+    spisoc_potronov.append(avtomat_potron)
+    wrap.sprite.move_at_angle_dir(avtomat_potron,random.randint(50,200))
 
 
 @wrap.on_mouse_move()
