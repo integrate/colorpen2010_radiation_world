@@ -11,7 +11,6 @@ semla = wrap.sprite.add('world', 500, 900, 'lol')
 # geroy_1
 geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1pylimet')
 
-
 @wrap.always(10000)
 def wrag():
     wrag1 = wrap.sprite.add('wrag_enemy', random.randint(0, 1920), random.randint(0, 1080))
@@ -27,8 +26,23 @@ def otkinyl_wraga():
         for t in spisoc_potronov:
             hleb=wrap.sprite.is_collide_sprite(y,t)
             if hleb==True:
-               wrap.sprite.move_at_angle(y,wrap.sprite.get_angle(t),5)
+                wrap.sprite.move_at_angle(y,wrap.sprite.get_angle(t),5)
+                wrap.sprite.set_costume(y,'gif2')
+                wrap.sprite.remove(t)
+                spisoc_potronov.remove(t)
 
+
+@wrap.always(100)
+def ybiza():
+    for m in spisoc_potronov:
+        pylX=wrap.sprite.get_x(m)
+        pylY=wrap.sprite.get_y(m)
+        if pylY <= 0 or pylY >= 1080:
+            wrap.sprite.remove(m)
+            spisoc_potronov.remove(m)
+        elif pylX <= 0 or pylX >= 1920:
+            wrap.sprite.remove(m)
+            spisoc_potronov.remove(m)
 
 @wrap.on_mouse_down(wrap.BUTTON_LEFT)
 def zastrelu(pos_x, pos_y):
@@ -37,12 +51,11 @@ def zastrelu(pos_x, pos_y):
     what = wrap.sprite.get_angle(geroy)
     wrap.sprite.move_at_angle(avtomat_potron, what, 45)
     spisoc_potronov.append(avtomat_potron)
-    print(avtomat_potron)
 
 @wrap.always
 def sleep():
     for i in spisoc_potronov:
-        wrap.sprite.move_at_angle_dir(i,5)
+        wrap.sprite.move_at_angle_dir(i,20)
     otkinyl_wraga()
 
 
