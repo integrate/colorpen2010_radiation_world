@@ -3,8 +3,8 @@ import wrap, random
 # world
 wrap.add_sprite_dir("sprite's")
 wrap.world.create_world(1920, 1080)
-wrap.world.set_title('2 player game')
 wrag2 = []
+money_spisok = []
 spisoc_potronov=[]
 wrap.world.set_back_image("sprite's/world/ground-texture_(32).jpg")
 semla = wrap.sprite.add('world', 500, 900, 'lol')
@@ -25,12 +25,41 @@ def otkinyl_wraga():
     for y in wrag2:
         for t in spisoc_potronov:
             hleb=wrap.sprite.is_collide_sprite(y,t)
-            if hleb==True:
-                wrap.sprite.move_at_angle(y,wrap.sprite.get_angle(t),5)
+            if wrap.sprite.get_costume(y) == 'gif1' and hleb==True:
+                wrap.sprite.move_at_angle(y,wrap.sprite.get_angle(t),50)
                 wrap.sprite.set_costume(y,'gif2')
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
+            elif wrap.sprite.get_costume(y) == 'gif2' and hleb==True:
+                wrap.sprite.move_at_angle(y,wrap.sprite.get_angle(t),100)
+                wrap.sprite.set_costume(y,'gif3')
+                wrap.sprite.remove(t)
+                spisoc_potronov.remove(t)
+            elif wrap.sprite.get_costume(y) == 'gif3' and hleb==True:
+                wrap.sprite.move_at_angle(y,wrap.sprite.get_angle(t),150)
+                wrap.sprite.set_costume(y,'gif4')
+                wrap.sprite.remove(t)
+                spisoc_potronov.remove(t)
+            elif wrap.sprite.get_costume(y) == 'gif4' and hleb==True:
+                money(y)
+                wrap.sprite.remove(y)
+                wrag2.remove(y)
+                wrap.sprite.remove(t)
+                spisoc_potronov.remove(t)
 
+                break
+def money(wrag):
+    wragX = wrap.sprite.get_x(wrag)
+    wragy = wrap.sprite.get_y(wrag)
+    money1=wrap.sprite.add('mario-items',wragX,wragy,'coin')
+    money_spisok.append(money1)
+
+def sobiri_monetky():
+    for y in money_spisok:
+            hleb = wrap.sprite.is_collide_sprite(y, geroy)
+            if hleb==True:
+                wrap.sprite.remove(y)
+                money_spisok.remove(y)
 
 @wrap.always(100)
 def ybiza():
@@ -74,6 +103,8 @@ def sdvin_mir():
     wrap.sprite.move(geroy, -yholpox, -yholpoy)
     for o in wrag2:
         wrap.sprite.move(o, -yholpox, -yholpoy)
+    for o in money_spisok:
+        wrap.sprite.move(o, -yholpox, -yholpoy)
 
 
 @wrap.on_key_always(wrap.K_w)
@@ -82,4 +113,5 @@ def geroy_move_w(keys, control_keys):
         wrap.sprite.move_at_angle_dir(geroy, 5)
     elif wrap.KMOD_SHIFT in control_keys:
         wrap.sprite.move_at_angle_dir(geroy, 10)
+    sobiri_monetky()
     sdvin_mir()
