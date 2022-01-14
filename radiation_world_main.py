@@ -8,6 +8,7 @@ money_spisok = []
 spisoc_potronov=[]
 wrap.world.set_back_image("sprite's/world/ground-texture_(32).jpg")
 semla = wrap.sprite.add('world', 500, 900, 'lol')
+wrap.sprite.add('money',960,100,'shot grn')
 # geroy_1
 geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1pylimet')
 
@@ -48,19 +49,27 @@ def otkinyl_wraga():
                 spisoc_potronov.remove(t)
 
                 break
+
 def money(wrag):
     wragX = wrap.sprite.get_x(wrag)
     wragy = wrap.sprite.get_y(wrag)
-    money1=wrap.sprite.add('mario-items',wragX,wragy,'coin')
+    money1=wrap.sprite.add('money',wragX,wragy,'10 grn')
     money_spisok.append(money1)
 
+shot=0
 def sobiri_monetky():
+    global shot
     for y in money_spisok:
             hleb = wrap.sprite.is_collide_sprite(y, geroy)
             if hleb==True:
                 wrap.sprite.remove(y)
                 money_spisok.remove(y)
+                wrap.sprite_text.set_text(bober,'10')
+                shot +=10
+                print(shot)
 
+
+bober=wrap.sprite.add_text('0',960,100,)
 @wrap.always(100)
 def ybiza():
     for m in spisoc_potronov:
