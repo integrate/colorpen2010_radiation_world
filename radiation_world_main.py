@@ -9,6 +9,9 @@ spisoc_potronov=[]
 wrap.world.set_back_image("sprite's/world/ground-texture_(32).jpg")
 semla = wrap.sprite.add('world', 500, 900, 'lol')
 wrap.sprite.add('money',960,100,'shot grn')
+wrap.sprite.add('steni i camni',403,356,'rock - jpg')
+wrap.sprite.add('steni i camni',603,963,'rock - jpg')
+wrap.sprite.add('steni i camni',803,756,'rock - jpg')
 # geroy_1
 geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1pylimet')
 
@@ -64,9 +67,8 @@ def sobiri_monetky():
             if hleb==True:
                 wrap.sprite.remove(y)
                 money_spisok.remove(y)
-                wrap.sprite_text.set_text(bober,'10')
                 shot +=10
-                print(shot)
+                wrap.sprite_text.set_text(bober,str(shot))
 
 
 bober=wrap.sprite.add_text('0',960,100,)
