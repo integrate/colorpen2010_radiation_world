@@ -4,17 +4,19 @@ import wrap, random
 wrap.add_sprite_dir("sprite's")
 wrap.world.create_world(1920, 1080)
 wrag2 = []
+kamen2=[]
 money_spisok = []
 spisoc_potronov=[]
 wrap.world.set_back_image("sprite's/world/ground-texture_(32).jpg")
 semla = wrap.sprite.add('world', 500, 900, 'lol')
 wrap.sprite.add('money',960,100,'shot grn')
-wrap.sprite.add('steni i camni',403,356,'rock - jpg')
-wrap.sprite.add('steni i camni',603,963,'rock - jpg')
-wrap.sprite.add('steni i camni',803,756,'rock - jpg')
+
 # geroy_1
 geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1pylimet')
 
+def rock(x,y):
+    kamen1=wrap.sprite.add('steni i camni',x,y, 'rock - jpg')
+    kamen2.append(kamen1)
 @wrap.always(10000)
 def wrag():
     wrag1 = wrap.sprite.add('wrag_enemy', random.randint(0, 1920), random.randint(0, 1080))
@@ -52,6 +54,10 @@ def otkinyl_wraga():
                 spisoc_potronov.remove(t)
 
                 break
+
+rock(120,340)
+rock(153,578)
+rock(1000,786)
 
 def money(wrag):
     wragX = wrap.sprite.get_x(wrag)
@@ -115,6 +121,8 @@ def sdvin_mir():
     for o in wrag2:
         wrap.sprite.move(o, -yholpox, -yholpoy)
     for o in money_spisok:
+        wrap.sprite.move(o, -yholpox, -yholpoy)
+    for o in kamen2:
         wrap.sprite.move(o, -yholpox, -yholpoy)
 
 
