@@ -25,7 +25,8 @@ def wrag():
 @wrap.always(100)
 def wrag_napal():
     for u in wrag2:
-        wrap.sprite.move_at_angle_point(u,960,540,3)
+        ygl=wrap.sprite.calc_angle_by_point(u,960,540)
+        idi(u,ygl,3)
 
 def otkinyl_wraga():
     for y in wrag2:
@@ -109,6 +110,13 @@ def sleep():
 def geroy_move(pos_x, pos_y):
     wrap.sprite.set_angle_to_point(geroy, pos_x, pos_y)
 
+def idi(who,ygl,rastoanie):
+    rastoanie=int(rastoanie)
+    wrap.sprite.move_at_angle(who, ygl, rastoanie)
+    for y in kamen2:
+        hleb = wrap.sprite.is_collide_sprite(y, who)
+        if hleb == True:
+           wrap.sprite.move_at_angle(who,ygl,-rastoanie-3)
 
 def sdvin_mir():
     gerx = wrap.sprite.get_x(geroy)
@@ -128,9 +136,10 @@ def sdvin_mir():
 
 @wrap.on_key_always(wrap.K_w)
 def geroy_move_w(keys, control_keys):
+    okeyski=wrap.sprite.get_angle(geroy)
     if wrap.K_w in keys and not wrap.KMOD_SHIFT in control_keys:
-        wrap.sprite.move_at_angle_dir(geroy, 5)
+        idi(geroy,okeyski,5)
     elif wrap.KMOD_SHIFT in control_keys:
-        wrap.sprite.move_at_angle_dir(geroy, 10)
+        idi(geroy,okeyski,10)
     sobiri_monetky()
     sdvin_mir()
