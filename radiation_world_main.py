@@ -38,7 +38,7 @@ def otkinyl_wraga():
         for t in spisoc_potronov:
             hleb = wrap.sprite.is_collide_sprite(y, t)
             if wrap.sprite.get_costume(y) == 'gif1' and hleb == True:
-                wrap.sprite.move_at_angle(y, wrap.sprite.get_angle(t), 50)
+                idi(t,50,50)
                 wrap.sprite.set_costume(y, 'gif2')
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
@@ -126,7 +126,16 @@ def geroy_move(pos_x, pos_y):
 
 
 def idi(who, ygl, rastoanie):
+    """
+    двигает спрайт.
+
+    :param who: ково двигать
+    :param ygl: под коким углом сдвигать спрайт
+    :param rastoanie: на сколько пикселей
+    """
     rastoanie = int(rastoanie)
+    if ygl== None:
+        ygl =0
     x, z = wrap.sprite.get_pos(who)
     wrap.sprite.move_at_angle(who, ygl, rastoanie)
     for y in kamen2:
@@ -160,13 +169,14 @@ def sdvin_mir():
     for o in kamen2:
         wrap.sprite.move(o, -yholpox, -yholpoy)
 
-
-@wrap.on_key_always(wrap.K_w)
+@wrap.on_key_always(wrap.K_w,wrap.K_s)
 def geroy_move_w(keys, control_keys):
     okeyski = wrap.sprite.get_angle(geroy)
     if wrap.K_w in keys and not wrap.KMOD_SHIFT in control_keys:
         idi(geroy, okeyski, 5)
     elif wrap.KMOD_SHIFT in control_keys:
         idi(geroy, okeyski, 10)
+    if wrap.K_s in keys and not wrap.KMOD_SHIFT in control_keys:
+        idi(geroy, okeyski, -5)
     sobiri_monetky()
     sdvin_mir()
