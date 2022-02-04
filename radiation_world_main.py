@@ -3,13 +3,24 @@ import wrap, random
 # world
 wrap.add_sprite_dir("sprite's")
 wrap.world.create_world(1920, 1080)
+
 wrag2 = []
 kamen2 = []
 money_spisok = []
 spisoc_potronov = []
+
 wrap.world.set_back_image("sprite's/world/ground-texture_(32).jpg")
 semla = wrap.sprite.add('world', 500, 900, 'lol')
+
 wrap.sprite.add('money', 960, 100, 'shot grn')
+
+hp_bar=wrap.sprite.add('HP',100,100,'O_hp')
+wrap.sprite.move_left_to(hp_bar,10)
+wrap.sprite.move_top_to(hp_bar,10)
+
+hp_bar100=wrap.sprite.add('HP',100,100,'100 HP')
+wrap.sprite.move_left_to(hp_bar100,92)
+wrap.sprite.move_top_to(hp_bar100,26)
 
 # geroy_1
 geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1pylimet')
@@ -32,6 +43,7 @@ def wrag_napal():
         ygl = wrap.sprite.calc_angle_by_point(u, 960, 540)
         idi(u, ygl, 3)
 
+# def HP_igroka():
 
 def otkinyl_wraga():
     for y in wrag2:
