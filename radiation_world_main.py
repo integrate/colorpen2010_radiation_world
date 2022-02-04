@@ -36,19 +36,20 @@ def wrag_napal():
 def otkinyl_wraga():
     for y in wrag2:
         for t in spisoc_potronov:
+            ygl_potrona=wrap.sprite.get_angle(t)
             hleb = wrap.sprite.is_collide_sprite(y, t)
             if wrap.sprite.get_costume(y) == 'gif1' and hleb == True:
-                idi(t,50,50)
+                idi(y,ygl_potrona,50)
                 wrap.sprite.set_costume(y, 'gif2')
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
             elif wrap.sprite.get_costume(y) == 'gif2' and hleb == True:
-                wrap.sprite.move_at_angle(y, wrap.sprite.get_angle(t), 100)
+                idi(y,ygl_potrona,100)
                 wrap.sprite.set_costume(y, 'gif3')
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
             elif wrap.sprite.get_costume(y) == 'gif3' and hleb == True:
-                wrap.sprite.move_at_angle(y, wrap.sprite.get_angle(t), 150)
+                idi(y,ygl_potrona,150)
                 wrap.sprite.set_costume(y, 'gif4')
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
