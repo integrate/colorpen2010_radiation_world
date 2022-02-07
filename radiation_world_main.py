@@ -19,8 +19,8 @@ wrap.sprite.move_left_to(hp_bar,10)
 wrap.sprite.move_top_to(hp_bar,10)
 
 hp_bar100=wrap.sprite.add('HP',100,100,'100 HP')
-wrap.sprite.move_left_to(hp_bar100,92)
-wrap.sprite.move_top_to(hp_bar100,26)
+wrap.sprite.move_left_to(hp_bar100,88)
+wrap.sprite.move_top_to(hp_bar100,25)
 
 # geroy_1
 geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1pylimet')
@@ -101,7 +101,7 @@ def sobiri_monetky():
             wrap.sprite_text.set_text(bober, str(shot))
 
 
-bober = wrap.sprite.add_text('0', 960, 100, )
+bober = wrap.sprite.add_text('0', 980, 84,font_size=70)
 
 
 @wrap.always(100)
@@ -116,6 +116,16 @@ def ybiza():
             wrap.sprite.remove(m)
             spisoc_potronov.remove(m)
 
+@wrap.always
+def katleta():
+    for l in wrag2:
+        hleb = wrap.sprite.is_collide_sprite(geroy,l)
+        if hleb==True:
+            wrap.sprite.set_width_percent(hp_bar100,wrap.sprite.get_width_percent(hp_bar100)-1)
+            wrap.sprite.move_left_to(hp_bar100, 88)
+        if wrap.sprite.get_width_percent(hp_bar100) == 0:
+            print('GAME:LOSER')
+            exit()
 
 @wrap.on_mouse_down(wrap.BUTTON_LEFT)
 def zastrelu(pos_x, pos_y):
