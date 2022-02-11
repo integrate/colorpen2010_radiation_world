@@ -9,18 +9,18 @@ kamen2 = []
 money_spisok = []
 spisoc_potronov = []
 
-wrap.world.set_back_image("sprite's/world/ground-texture_(32).jpg")
+# wrap.world.set_back_image("sprite's/world/ground-texture_(32).jpg")
 semla = wrap.sprite.add('world', 500, 900, 'lol')
 
 wrap.sprite.add('money', 960, 100, 'shot grn')
 
-hp_bar=wrap.sprite.add('HP',100,100,'O_hp')
-wrap.sprite.move_left_to(hp_bar,10)
-wrap.sprite.move_top_to(hp_bar,10)
+hp_bar = wrap.sprite.add('HP', 100, 100, 'O_hp')
+wrap.sprite.move_left_to(hp_bar, 10)
+wrap.sprite.move_top_to(hp_bar, 10)
 
-hp_bar100=wrap.sprite.add('HP',100,100,'100 HP')
-wrap.sprite.move_left_to(hp_bar100,88)
-wrap.sprite.move_top_to(hp_bar100,25)
+hp_bar100 = wrap.sprite.add('HP', 100, 100, '100 HP')
+wrap.sprite.move_left_to(hp_bar100, 88)
+wrap.sprite.move_top_to(hp_bar100, 25)
 
 # geroy_1
 geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1pylimet')
@@ -30,8 +30,12 @@ def rock(x, y):
     kamen1 = wrap.sprite.add('steni i camni', x, y, 'rock - jpg')
     kamen2.append(kamen1)
 
+def rock_stena(x,y):
+    stena= wrap.sprite.add('steni i camni',x,y,'rock_stena')
+    wrap.sprite.set_angle(stena,180)
+    kamen2.append(stena)
 
-@wrap.always(10000)
+@wrap.always(30000)
 def wrag():
     wrag1 = wrap.sprite.add('wrag_enemy', random.randint(0, 1920), random.randint(0, 1080))
     wrag2.append(wrag1)
@@ -43,25 +47,26 @@ def wrag_napal():
         ygl = wrap.sprite.calc_angle_by_point(u, 960, 540)
         idi(u, ygl, 3)
 
+
 # def HP_igroka():
 
 def otkinyl_wraga():
     for y in wrag2:
         for t in spisoc_potronov:
-            ygl_potrona=wrap.sprite.get_angle(t)
+            ygl_potrona = wrap.sprite.get_angle(t)
             hleb = wrap.sprite.is_collide_sprite(y, t)
             if wrap.sprite.get_costume(y) == 'gif1' and hleb == True:
-                idi(y,ygl_potrona,50)
+                idi(y, ygl_potrona, 50)
                 wrap.sprite.set_costume(y, 'gif2')
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
             elif wrap.sprite.get_costume(y) == 'gif2' and hleb == True:
-                idi(y,ygl_potrona,100)
+                idi(y, ygl_potrona, 100)
                 wrap.sprite.set_costume(y, 'gif3')
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
             elif wrap.sprite.get_costume(y) == 'gif3' and hleb == True:
-                idi(y,ygl_potrona,150)
+                idi(y, ygl_potrona, 150)
                 wrap.sprite.set_costume(y, 'gif4')
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
@@ -79,6 +84,10 @@ rock(120, 340)
 rock(153, 578)
 rock(1000, 786)
 
+rock_stena(700,300)
+rock_stena(975,300)
+rock_stena(1250,300)
+rock_stena(1375,300)
 
 def money(wrag):
     wragX = wrap.sprite.get_x(wrag)
@@ -101,7 +110,7 @@ def sobiri_monetky():
             wrap.sprite_text.set_text(bober, str(shot))
 
 
-bober = wrap.sprite.add_text('0', 980, 84,font_size=70)
+bober = wrap.sprite.add_text('0', 980, 84, font_size=70)
 
 
 @wrap.always(100)
@@ -116,16 +125,18 @@ def ybiza():
             wrap.sprite.remove(m)
             spisoc_potronov.remove(m)
 
+
 @wrap.always
 def katleta():
     for l in wrag2:
-        hleb = wrap.sprite.is_collide_sprite(geroy,l)
-        if hleb==True:
-            wrap.sprite.set_width_percent(hp_bar100,wrap.sprite.get_width_percent(hp_bar100)-1)
+        hleb = wrap.sprite.is_collide_sprite(geroy, l)
+        if hleb == True:
+            wrap.sprite.set_width_percent(hp_bar100, wrap.sprite.get_width_percent(hp_bar100) - 1)
             wrap.sprite.move_left_to(hp_bar100, 88)
         if wrap.sprite.get_width_percent(hp_bar100) == 0:
             print('GAME:LOSER')
             exit()
+
 
 @wrap.on_mouse_down(wrap.BUTTON_LEFT)
 def zastrelu(pos_x, pos_y):
@@ -157,8 +168,8 @@ def idi(who, ygl, rastoanie):
     :param rastoanie: на сколько пикселей
     """
     rastoanie = int(rastoanie)
-    if ygl== None:
-        ygl =0
+    if ygl == None:
+        ygl = 0
     x, z = wrap.sprite.get_pos(who)
     wrap.sprite.move_at_angle(who, ygl, rastoanie)
     for y in kamen2:
@@ -192,7 +203,8 @@ def sdvin_mir():
     for o in kamen2:
         wrap.sprite.move(o, -yholpox, -yholpoy)
 
-@wrap.on_key_always(wrap.K_w,wrap.K_s)
+
+@wrap.on_key_always(wrap.K_w, wrap.K_s)
 def geroy_move_w(keys, control_keys):
     okeyski = wrap.sprite.get_angle(geroy)
     if wrap.K_w in keys and not wrap.KMOD_SHIFT in control_keys:
