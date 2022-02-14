@@ -9,8 +9,8 @@ kamen2 = []
 money_spisok = []
 spisoc_potronov = []
 
-# wrap.world.set_back_image("sprite's/world/ground-texture_(32).jpg")
-semla = wrap.sprite.add('world', 500, 900, 'lol')
+semla=wrap.sprite.add('world',960,540,'трава1')
+
 
 wrap.sprite.add('money', 960, 100, 'shot grn')
 
@@ -30,9 +30,9 @@ def rock(x, y):
     kamen1 = wrap.sprite.add('steni i camni', x, y, 'rock - jpg')
     kamen2.append(kamen1)
 
-def rock_stena(x,y):
+def rock_stena(x,y,ygl):
     stena= wrap.sprite.add('steni i camni',x,y,'rock_stena')
-    wrap.sprite.set_angle(stena,180)
+    wrap.sprite.set_angle(stena,ygl)
     kamen2.append(stena)
 
 @wrap.always(30000)
@@ -82,12 +82,19 @@ def otkinyl_wraga():
 
 rock(120, 340)
 rock(153, 578)
-rock(1000, 786)
+rock(1550, 856)
 
-rock_stena(700,300)
-rock_stena(975,300)
-rock_stena(1250,300)
-rock_stena(1375,300)
+rock_stena(700,300,90)
+rock_stena(975,300,90)
+rock_stena(1250,300,90)
+rock_stena(1375,300,90)
+rock_stena(700,900,90)
+rock_stena(975,900,90)
+rock_stena(1250,900,90)
+rock_stena(1375,900,90)
+rock_stena(1450,758,180)
+rock_stena(1450,485,180)
+rock_stena(635,485,180)
 
 def money(wrag):
     wragX = wrap.sprite.get_x(wrag)
@@ -112,6 +119,13 @@ def sobiri_monetky():
 
 bober = wrap.sprite.add_text('0', 980, 84, font_size=70)
 
+@wrap.always
+def pyla_rasbivaitsa():
+    for o in spisoc_potronov:
+        chipsi=wrap.sprite.is_collide_any_sprite(o,kamen2)
+        if chipsi != None:
+            wrap.sprite.remove(o)
+            spisoc_potronov.remove(o)
 
 @wrap.always(100)
 def ybiza():
