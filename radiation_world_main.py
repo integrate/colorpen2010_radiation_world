@@ -8,6 +8,7 @@ wrag2 = []
 kamen2 = []
 money_spisok = []
 spisoc_potronov = []
+house1_12=[]
 
 semla=wrap.sprite.add('world',960,540,'трава1')
 
@@ -40,7 +41,11 @@ def wrag():
     wrag1 = wrap.sprite.add('wrag_enemy', random.randint(0, 1920), random.randint(0, 1080))
     wrag2.append(wrag1)
 
-
+def spisoc_domow():
+    house1_1=wrap.sprite.add("house's",random.randint(-100,1000),0,'house1')
+    house1_12.append(house1_1)
+spisoc_domow()
+spisoc_domow()
 @wrap.always(100)
 def wrag_napal():
     for u in wrag2:
@@ -189,14 +194,20 @@ def idi(who, ygl, rastoanie):
     for y in kamen2:
         hleb = wrap.sprite.is_collide_sprite(y, who)
         if hleb == True:
-            # wrap.sprite.move_at_angle(who, ygl, -rastoanie)
             wrap.sprite.move_to(who, x, z)
-
+    for y in house1_12:
+        hleb = wrap.sprite.is_collide_sprite(y, who)
+        if hleb == True:
+            wrap.sprite.move_to(who, x, z)
 
 def pavernis(who, pos_x, pos_y):
     bebr = wrap.sprite.get_angle(who)
     wrap.sprite.set_angle_to_point(who, pos_x, pos_y)
     for y in kamen2:
+        hleb = wrap.sprite.is_collide_sprite(y, who)
+        if hleb == True:
+            wrap.sprite.set_angle(who, bebr)
+    for y in house1_12:
         hleb = wrap.sprite.is_collide_sprite(y, who)
         if hleb == True:
             wrap.sprite.set_angle(who, bebr)
@@ -215,6 +226,8 @@ def sdvin_mir():
     for o in money_spisok:
         wrap.sprite.move(o, -yholpox, -yholpoy)
     for o in kamen2:
+        wrap.sprite.move(o, -yholpox, -yholpoy)
+    for o in house1_12:
         wrap.sprite.move(o, -yholpox, -yholpoy)
 
 
