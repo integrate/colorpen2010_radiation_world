@@ -24,7 +24,7 @@ wrap.sprite.move_left_to(hp_bar100, 88)
 wrap.sprite.move_top_to(hp_bar100, 25)
 
 # geroy_1
-geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1pylimet')
+geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1rpg')
 
 
 def rock(x, y):
@@ -84,6 +84,38 @@ def otkinyl_wraga():
 
                 break
 
+def terarist():
+    for y in house1_12:
+        for t in spisoc_potronov:
+            ygl_potrona = wrap.sprite.get_angle(t)
+            hleb = wrap.sprite.is_collide_sprite(y, t)
+            if wrap.sprite.get_costume(y) == 'house1' and hleb == True:
+                idi(y, ygl_potrona, 50)
+                wrap.sprite.set_costume(y, 'house1-2')
+                wrap.sprite.remove(t)
+                spisoc_potronov.remove(t)
+            elif wrap.sprite.get_costume(y) == 'house1-2' and hleb == True:
+                idi(y, ygl_potrona, 100)
+                wrap.sprite.set_costume(y, 'house1-3')
+                wrap.sprite.remove(t)
+                spisoc_potronov.remove(t)
+            elif wrap.sprite.get_costume(y) == 'house1-3' and hleb == True:
+                idi(y, ygl_potrona, 150)
+                wrap.sprite.set_costume(y, 'house1-4')
+                wrap.sprite.remove(t)
+                spisoc_potronov.remove(t)
+            elif wrap.sprite.get_costume(y) == 'house1-4' and hleb == True:
+                idi(y, ygl_potrona, 150)
+                wrap.sprite.set_costume(y, 'house1-5')
+                wrap.sprite.remove(t)
+                spisoc_potronov.remove(t)
+            elif wrap.sprite.get_costume(y) == 'house1-5' and hleb == True:
+                wrap.sprite.remove(y)
+                house1_12.remove(y)
+                wrap.sprite.remove(t)
+                spisoc_potronov.remove(t)
+
+                break
 
 rock(120, 340)
 rock(153, 578)
@@ -159,7 +191,7 @@ def katleta():
 
 @wrap.on_mouse_down(wrap.BUTTON_LEFT)
 def zastrelu(pos_x, pos_y):
-    avtomat_potron = wrap.sprite.add('pyli', 960, 540)
+    avtomat_potron = wrap.sprite.add('pyli', 960, 540,'rpg_patron')
     wrap.sprite.set_angle(avtomat_potron, wrap.sprite.get_angle(geroy))
     what = wrap.sprite.get_angle(geroy)
     wrap.sprite.move_at_angle(avtomat_potron, what, 45)
@@ -171,6 +203,7 @@ def sleep():
     for i in spisoc_potronov:
         wrap.sprite.move_at_angle_dir(i, 20)
     otkinyl_wraga()
+    terarist()
 
 
 @wrap.on_mouse_move()
@@ -242,3 +275,11 @@ def geroy_move_w(keys, control_keys):
         idi(geroy, okeyski, -5)
     sobiri_monetky()
     sdvin_mir()
+
+# i_like_minecraft=[]
+# a=1
+# v='code3426'
+# house1='pelmeni_zawarilis'
+# i_like_minecraft=[a,2,3,4,5,6,v,'wow',house1]
+#
+# kakaoto_peremenaa={'name':'pelmenius','vozrast':15,'igral_v_minecraft':'20let'
