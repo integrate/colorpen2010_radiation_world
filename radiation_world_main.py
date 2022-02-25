@@ -283,3 +283,18 @@ def geroy_move_w(keys, control_keys):
 # i_like_minecraft=[a,2,3,4,5,6,v,'wow',house1]
 #
 # kakaoto_peremenaa={'name':'pelmenius','vozrast':15,'igral_v_minecraft':'20let'
+
+
+# kakoito_mysik={'name':'loxus','age':30,'mtf_group':'mtf11'}
+# object_1={'name':'oleg','age':26,'tasks_finished':34,'tasks_failed':2,'mtf_group':'mtf11','role':'commander'}
+# secret_object={'name':'???','age':32}
+# object_2={'name':'alexey','age':20}
+# mtf11=[kakoito_mysik,object_1,secret_object,object_2]
+# del kakoito_mysik
+# del object_1
+# del secret_object
+# del object_2
+# for object in mtf11:
+#     print(object['age'])
+#     object['age']+=1
+#     print(object['age'])
