@@ -9,6 +9,7 @@ kamen2 = []
 money_spisok = []
 spisoc_potronov = []
 house1_12=[]
+giper_ymnie_gribi=[]
 
 semla=wrap.sprite.add('world',960,540,'трава1')
 
@@ -51,6 +52,9 @@ def wrag_napal():
     for u in wrag2:
         ygl = wrap.sprite.calc_angle_by_point(u, 960, 540)
         idi(u, ygl, 3)
+    for i in giper_ymnie_gribi:
+        ygl = wrap.sprite.calc_angle_by_point(i['id'], 960, 540)
+        idi(i['id'], ygl, i['speed'])
 
 
 # def HP_igroka():
@@ -262,6 +266,8 @@ def sdvin_mir():
         wrap.sprite.move(o, -yholpox, -yholpoy)
     for o in house1_12:
         wrap.sprite.move(o, -yholpox, -yholpoy)
+    for o in giper_ymnie_gribi:
+        wrap.sprite.move(o['id'], -yholpox, -yholpoy)
 
 
 @wrap.on_key_always(wrap.K_w, wrap.K_s)
@@ -298,3 +304,13 @@ def geroy_move_w(keys, control_keys):
 #     print(object['age'])
 #     object['age']+=1
 #     print(object['age'])
+gripTank=wrap.sprite.add('bosses solders',457,500,'infected wrag tank1_1')
+grip_solderTank={'id':gripTank,'speed':3}
+giper_ymnie_gribi.append(grip_solderTank)
+
+gripTank=wrap.sprite.add('bosses solders',427,900,'infected wrag tank1_1')
+grip_solderTank={'id':gripTank,'speed':3}
+giper_ymnie_gribi.append(grip_solderTank)
+
+import wrap_py
+wrap_py.app.start()
