@@ -59,6 +59,24 @@ def wrag_napal():
 
 # def HP_igroka():
 
+def ono_stremnoe():
+    for y in giper_ymnie_gribi:
+        ygl = wrap.sprite.calc_angle_by_point(y['id'], 960, 540)
+        for t in spisoc_potronov:
+            ygl_potrona = wrap.sprite.get_angle(t)
+            hleb = wrap.sprite.is_collide_sprite(y['id'], t)
+            if hleb == True:
+                idi(y['id'], ygl_potrona, 50)
+                wrap.sprite.remove(t)
+                spisoc_potronov.remove(t)
+                y['speed']-=1
+                y['hp'] -= 1
+            if y['hp']==0:
+                wrap.sprite.remove(y['id'])
+                giper_ymnie_gribi.remove(y)
+
+                break
+
 def otkinyl_wraga():
     for y in wrag2:
         for t in spisoc_potronov:
@@ -180,9 +198,8 @@ def ybiza():
             wrap.sprite.remove(m)
             spisoc_potronov.remove(m)
 
-
 @wrap.always
-def katleta():
+def pelmen():
     for l in wrag2:
         hleb = wrap.sprite.is_collide_sprite(geroy, l)
         if hleb == True:
@@ -191,6 +208,16 @@ def katleta():
         if wrap.sprite.get_width_percent(hp_bar100) == 0:
             print('GAME:LOSER')
             exit()
+@wrap.always
+def katleta():
+    for k in giper_ymnie_gribi:
+            hleb = wrap.sprite.is_collide_sprite(geroy, k['id'])
+            if hleb == True:
+                wrap.sprite.set_width_percent(hp_bar100, wrap.sprite.get_width_percent(hp_bar100) - 1)
+                wrap.sprite.move_left_to(hp_bar100, 88)
+            if wrap.sprite.get_width_percent(hp_bar100) == 0:
+                print('GAME:LOSER')
+                exit()
 
 
 @wrap.on_mouse_down(wrap.BUTTON_LEFT)
@@ -201,12 +228,12 @@ def zastrelu(pos_x, pos_y):
     wrap.sprite.move_at_angle(avtomat_potron, what, 45)
     spisoc_potronov.append(avtomat_potron)
 
-
 @wrap.always
 def sleep():
     for i in spisoc_potronov:
         wrap.sprite.move_at_angle_dir(i, 20)
     otkinyl_wraga()
+    ono_stremnoe()
     terarist()
 
 
@@ -305,11 +332,11 @@ def geroy_move_w(keys, control_keys):
 #     object['age']+=1
 #     print(object['age'])
 gripTank=wrap.sprite.add('bosses solders',457,500,'infected wrag tank1_1')
-grip_solderTank={'id':gripTank,'speed':3}
+grip_solderTank={'id':gripTank,'speed':3,'hp':3}
 giper_ymnie_gribi.append(grip_solderTank)
 
 gripTank=wrap.sprite.add('bosses solders',427,900,'infected wrag tank1_1')
-grip_solderTank={'id':gripTank,'speed':3}
+grip_solderTank={'id':gripTank,'speed':3,'hp':8}
 giper_ymnie_gribi.append(grip_solderTank)
 
 import wrap_py
