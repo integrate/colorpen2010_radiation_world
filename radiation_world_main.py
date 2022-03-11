@@ -59,6 +59,20 @@ def wrag_napal():
 
 # def HP_igroka():
 
+def ono_stremnoe():
+    for y in giper_ymnie_gribi:
+        ygl = wrap.sprite.calc_angle_by_point(y['id'], 960, 540)
+        for t in spisoc_potronov:
+            ygl_potrona = wrap.sprite.get_angle(t)
+            hleb = wrap.sprite.is_collide_sprite(y['id'], t)
+            if hleb == True:
+                idi(y['id'], ygl_potrona, 50)
+                wrap.sprite.remove(t)
+                spisoc_potronov.remove(t)
+                y['speed']-=1
+
+                break
+
 def otkinyl_wraga():
     for y in wrag2:
         for t in spisoc_potronov:
@@ -207,6 +221,7 @@ def sleep():
     for i in spisoc_potronov:
         wrap.sprite.move_at_angle_dir(i, 20)
     otkinyl_wraga()
+    ono_stremnoe()
     terarist()
 
 
@@ -305,11 +320,11 @@ def geroy_move_w(keys, control_keys):
 #     object['age']+=1
 #     print(object['age'])
 gripTank=wrap.sprite.add('bosses solders',457,500,'infected wrag tank1_1')
-grip_solderTank={'id':gripTank,'speed':3}
+grip_solderTank={'id':gripTank,'speed':3,'hp':1}
 giper_ymnie_gribi.append(grip_solderTank)
 
 gripTank=wrap.sprite.add('bosses solders',427,900,'infected wrag tank1_1')
-grip_solderTank={'id':gripTank,'speed':3}
+grip_solderTank={'id':gripTank,'speed':3,'hp':8}
 giper_ymnie_gribi.append(grip_solderTank)
 
 import wrap_py
