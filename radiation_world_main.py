@@ -69,7 +69,8 @@ def ono_stremnoe():
                 idi(y['id'], ygl_potrona, 50)
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
-                y['speed']-=1
+                y['speed']+=1
+                wrap.sprite.set_size_percent_of(y['id'],80)
                 y['hp'] -= 1
             if y['hp']==0:
                 wrap.sprite.remove(y['id'])
@@ -332,11 +333,11 @@ def geroy_move_w(keys, control_keys):
 #     object['age']+=1
 #     print(object['age'])
 gripTank=wrap.sprite.add('bosses solders',457,500,'infected wrag tank1_1')
-grip_solderTank={'id':gripTank,'speed':3,'hp':3}
+grip_solderTank={'id':gripTank,'speed':3,'hp':10}
 giper_ymnie_gribi.append(grip_solderTank)
 
 gripTank=wrap.sprite.add('bosses solders',427,900,'infected wrag tank1_1')
-grip_solderTank={'id':gripTank,'speed':3,'hp':8}
+grip_solderTank={'id':gripTank,'speed':3,'hp':10}
 giper_ymnie_gribi.append(grip_solderTank)
 
 import wrap_py
