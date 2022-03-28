@@ -20,13 +20,17 @@ semla = wrap.sprite.add('world', 960, 540, 'трава1')
 
 wrap.sprite.add('money', 960, 100, 'shot grn')
 
-hp_bar = wrap.sprite.add('HP', 100, 100, 'O_hp')
+hp_bar = wrap.sprite.add('barrs', 100, 100, 'O_hp')
 wrap.sprite.move_left_to(hp_bar, 10)
 wrap.sprite.move_top_to(hp_bar, 10)
 
-hp_bar100 = wrap.sprite.add('HP', 100, 100, '100 HP')
+hp_bar100 = wrap.sprite.add('barrs', 100, 100, '100 HP')
 wrap.sprite.move_left_to(hp_bar100, 88)
 wrap.sprite.move_top_to(hp_bar100, 25)
+
+ammo_bar = wrap.sprite.add('barrs', 100, 100, 'ammo bar')
+wrap.sprite.move_left_to(ammo_bar, wrap.sprite.get_right(hp_bar) + 5)
+wrap.sprite.move_top_to(ammo_bar, 10)
 
 # geroy_1
 geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1rpg')
@@ -198,6 +202,7 @@ def sobiri_predmetow():
             predmeti.remove(y)
             wrap.sprite.set_width_percent(hp_bar100, wrap.sprite.get_width_percent(hp_bar100) + y['+hp'])
             wrap.sprite.move_left_to(hp_bar100, 88)
+
 
 bober = wrap.sprite.add_text('0', 980, 84, font_size=70)
 
@@ -373,7 +378,11 @@ grip_solderTank = {'id': gripTank, 'speed': 3, 'hp': 10}
 giper_ymnie_gribi.append(grip_solderTank)
 
 medical_kit_1 = wrap.sprite.add("kit's", 1090, 540, 'first_air_kit1')
-medical_kit_1n = {'+hp': 100,'id':medical_kit_1}
+medical_kit_1n = {'+hp': 30, 'id': medical_kit_1}
+predmeti.append(medical_kit_1n)
+
+medical_kit_1 = wrap.sprite.add("kit's", 30, 50, 'first_air_kit1')
+medical_kit_1n = {'+hp': 30, 'id': medical_kit_1}
 predmeti.append(medical_kit_1n)
 
 import wrap_py
