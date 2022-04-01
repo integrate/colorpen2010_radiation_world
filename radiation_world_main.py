@@ -57,6 +57,10 @@ def spisoc_domow():
     house1_1 = wrap.sprite.add("house's", random.randint(-100, 1000), 0, 'house1')
     house1_12.append(house1_1)
 
+# @wrap.always
+# def ogranithitel(id,prozent):
+#     if
+
 
 spisoc_domow()
 spisoc_domow()
@@ -201,6 +205,8 @@ def sobiri_predmetow():
             wrap.sprite.remove(y['id'])
             predmeti.remove(y)
             wrap.sprite.set_width_percent(hp_bar100, wrap.sprite.get_width_percent(hp_bar100) + y['+hp'])
+            if wrap.sprite.get_width_percent(hp_bar100) > 100:
+                wrap.sprite.set_width_percent(hp_bar100, 100)
             wrap.sprite.move_left_to(hp_bar100, 88)
 
 
