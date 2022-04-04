@@ -201,7 +201,7 @@ def sobiri_predmetow():
 
     for y in predmeti:
         hleb = wrap.sprite.is_collide_sprite(y['id'], geroy)
-        if hleb == True:
+        if hleb == True and wrap.sprite.get_width_percent(hp_bar100) < 100:
             wrap.sprite.remove(y['id'])
             predmeti.remove(y)
             wrap.sprite.set_width_percent(hp_bar100, wrap.sprite.get_width_percent(hp_bar100) + y['+hp'])
