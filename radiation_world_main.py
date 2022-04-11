@@ -13,6 +13,7 @@ house1_12 = []
 giper_ymnie_gribi = []
 predmeti = []
 
+
 semla = wrap.sprite.add('world', 960, 540, 'трава1')
 
 # def medical_kit():
@@ -31,6 +32,10 @@ wrap.sprite.move_top_to(hp_bar100, 25)
 ammo_bar = wrap.sprite.add('barrs', 100, 100, 'ammo bar')
 wrap.sprite.move_left_to(ammo_bar, wrap.sprite.get_right(hp_bar) + 5)
 wrap.sprite.move_top_to(ammo_bar, 10)
+
+ammo_bar_perzents=wrap.sprite.add('barrs', 100, 200, 'colithestvo potronov')
+wrap.sprite.move_left_to(ammo_bar_perzents, wrap.sprite.get_right(hp_bar) + 17)
+wrap.sprite.move_top_to(ammo_bar_perzents, 77)
 
 # geroy_1
 geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1rpg')
@@ -57,9 +62,24 @@ def spisoc_domow():
     house1_1 = wrap.sprite.add("house's", random.randint(-100, 1000), 0, 'house1')
     house1_12.append(house1_1)
 
+
 # @wrap.always
 # def ogranithitel(id,prozent):
 #     if
+
+
+#potroni
+zapas_potronov = 103
+
+def zapas_potronov_v_inventore():
+    global zapas_potronov
+    if zapas_potronov > 0:
+        print('System: ostalos potronow -')
+        print(zapas_potronov)
+        wrap.sprite.set_width_percent(ammo_bar_perzents, wrap.sprite.get_width_percent(ammo_bar_perzents) - 1)
+        wrap.sprite.move_left_to(ammo_bar_perzents, wrap.sprite.get_right(hp_bar) + 17)
+    elif zapas_potronov == 0:
+        print('System: ostalos potronow - Potronow nety')
 
 
 spisoc_domow()
@@ -154,6 +174,10 @@ def terarist():
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
             elif wrap.sprite.get_costume(y) == 'house1-5' and hleb == True:
+                sus=range(random.randint(1,4))
+                for uh in sus:
+                    wrag1 = wrap.sprite.add('wrag_enemy', wrap.sprite.get_x(y),wrap.sprite.get_y(y))
+                    wrag2.append(wrag1)
                 wrap.sprite.remove(y)
                 house1_12.remove(y)
                 wrap.sprite.remove(t)
@@ -246,7 +270,6 @@ def pelmen():
             print('GAME:YOU LOSER')
             exit()
 
-
 @wrap.always
 def katleta():
     for k in giper_ymnie_gribi:
@@ -261,12 +284,15 @@ def katleta():
 
 @wrap.on_mouse_down(wrap.BUTTON_LEFT)
 def zastrelu(pos_x, pos_y):
-    avtomat_potron = wrap.sprite.add('pyli', 960, 540, 'rpg_patron')
-    wrap.sprite.set_angle(avtomat_potron, wrap.sprite.get_angle(geroy))
-    what = wrap.sprite.get_angle(geroy)
-    wrap.sprite.move_at_angle(avtomat_potron, what, 45)
-    spisoc_potronov.append(avtomat_potron)
-
+    global zapas_potronov
+    if zapas_potronov > 0:
+        avtomat_potron = wrap.sprite.add('pyli', 960, 540, 'rpg_patron')
+        wrap.sprite.set_angle(avtomat_potron, wrap.sprite.get_angle(geroy))
+        what = wrap.sprite.get_angle(geroy)
+        wrap.sprite.move_at_angle(avtomat_potron, what, 45)
+        spisoc_potronov.append(avtomat_potron)
+        zapas_potronov -= 1
+        zapas_potronov_v_inventore()
 
 @wrap.always
 def sleep():
