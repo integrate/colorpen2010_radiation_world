@@ -1,0 +1,1 @@
+SKIN_GEROA_s_rpg='geroy1rpg'

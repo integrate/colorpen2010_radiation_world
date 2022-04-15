@@ -1,5 +1,6 @@
 import wrap, random
-
+import tema_dla_woini_i_bitv as tema
+import tema_dla_medicini as tema
 # world
 wrap.add_sprite_dir("sprite's")
 wrap.world.create_world(1920, 1080)
@@ -38,7 +39,7 @@ wrap.sprite.move_left_to(ammo_bar_perzents, wrap.sprite.get_right(hp_bar) + 17)
 wrap.sprite.move_top_to(ammo_bar_perzents, 77)
 
 # geroy_1
-geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, 'geroy1rpg')
+geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, tema.SKIN_GEROA_MEDICINI)
 
 
 def rock(x, y):
@@ -108,8 +109,8 @@ def ono_stremnoe():
                 idi(y['id'], ygl_potrona, 50)
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
-                y['speed'] += 1
-                wrap.sprite.set_size_percent_of(y['id'], 80)
+                y['speed'] += 4
+                wrap.sprite.set_size_percent_of(y['id'], 40)
                 y['hp'] -= 1
             if y['hp'] == 0:
                 wrap.sprite.remove(y['id'])
@@ -286,7 +287,7 @@ def katleta():
 def zastrelu(pos_x, pos_y):
     global zapas_potronov
     if zapas_potronov > 0:
-        avtomat_potron = wrap.sprite.add('pyli', 960, 540, 'rpg_patron')
+        avtomat_potron = wrap.sprite.add('pyli', 960, 540, tema.SKIN_PYLI_MEDICINI)
         wrap.sprite.set_angle(avtomat_potron, wrap.sprite.get_angle(geroy))
         what = wrap.sprite.get_angle(geroy)
         wrap.sprite.move_at_angle(avtomat_potron, what, 45)
@@ -401,11 +402,11 @@ def geroy_move_w(keys, control_keys):
 #     print(object['age'])
 #     object['age']+=1
 #     print(object['age'])
-gripTank = wrap.sprite.add('bosses solders', 457, 500, 'infected wrag tank1_1')
-grip_solderTank = {'id': gripTank, 'speed': 3, 'hp': 10}
+gripTank = wrap.sprite.add('virusi', 457, 500, 'vieus1')
+grip_solderTank = {'id': gripTank, 'speed': 4, 'hp': 20}
 giper_ymnie_gribi.append(grip_solderTank)
 
-gripTank = wrap.sprite.add('bosses solders', 427, 900, 'infected wrag tank1_1')
+gripTank = wrap.sprite.add('virusi', 457, 500, 'vieus1')
 grip_solderTank = {'id': gripTank, 'speed': 3, 'hp': 10}
 giper_ymnie_gribi.append(grip_solderTank)
 
