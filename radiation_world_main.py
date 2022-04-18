@@ -1,6 +1,6 @@
 import wrap, random
 import tema_dla_woini_i_bitv as tema
-import tema_dla_medicini as tema
+# import tema_dla_medicini as tema
 # world
 wrap.add_sprite_dir("sprite's")
 wrap.world.create_world(1920, 1080)
@@ -39,7 +39,7 @@ wrap.sprite.move_left_to(ammo_bar_perzents, wrap.sprite.get_right(hp_bar) + 17)
 wrap.sprite.move_top_to(ammo_bar_perzents, 77)
 
 # geroy_1
-geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, tema.SKIN_GEROA_MEDICINI)
+geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, tema.SKIN_GEROA)
 
 
 def rock(x, y):
@@ -109,8 +109,8 @@ def ono_stremnoe():
                 idi(y['id'], ygl_potrona, 50)
                 wrap.sprite.remove(t)
                 spisoc_potronov.remove(t)
-                y['speed'] += 4
-                wrap.sprite.set_size_percent_of(y['id'], 40)
+                y['speed'] += 2
+                wrap.sprite.set_size_percent_of(y['id'], 120)
                 y['hp'] -= 1
             if y['hp'] == 0:
                 wrap.sprite.remove(y['id'])
@@ -226,13 +226,22 @@ def sobiri_predmetow():
 
     for y in predmeti:
         hleb = wrap.sprite.is_collide_sprite(y['id'], geroy)
-        if hleb == True and wrap.sprite.get_width_percent(hp_bar100) < 100:
+        if hleb == True and y['predmet'] == 'apteka' and wrap.sprite.get_width_percent(hp_bar100) < 100:
             wrap.sprite.remove(y['id'])
             predmeti.remove(y)
             wrap.sprite.set_width_percent(hp_bar100, wrap.sprite.get_width_percent(hp_bar100) + y['+hp'])
             if wrap.sprite.get_width_percent(hp_bar100) > 100:
                 wrap.sprite.set_width_percent(hp_bar100, 100)
             wrap.sprite.move_left_to(hp_bar100, 88)
+
+        if hleb == True and y['predmet'] == 'patron' and wrap.sprite.get_width_percent(ammo_bar_perzents) < 100:
+            wrap.sprite.remove(y['id'])
+            predmeti.remove(y)
+            wrap.sprite.set_width_percent(ammo_bar_perzents, wrap.sprite.get_width_percent(ammo_bar_perzents) + y['+ammo'])
+            wrap.sprite.move_left_to(ammo_bar_perzents, wrap.sprite.get_right(hp_bar) + 17)
+            if wrap.sprite.get_width_percent(ammo_bar_perzents) > 100:
+                wrap.sprite.set_width_percent(ammo_bar_perzents, 100)
+            wrap.sprite.move_left_to(ammo_bar_perzents, wrap.sprite.get_right(hp_bar) + 17)
 
 
 bober = wrap.sprite.add_text('0', 980, 84, font_size=70)
@@ -287,7 +296,7 @@ def katleta():
 def zastrelu(pos_x, pos_y):
     global zapas_potronov
     if zapas_potronov > 0:
-        avtomat_potron = wrap.sprite.add('pyli', 960, 540, tema.SKIN_PYLI_MEDICINI)
+        avtomat_potron = wrap.sprite.add('pyli', 960, 540, tema.SKIN_PYLI)
         wrap.sprite.set_angle(avtomat_potron, wrap.sprite.get_angle(geroy))
         what = wrap.sprite.get_angle(geroy)
         wrap.sprite.move_at_angle(avtomat_potron, what, 45)
@@ -402,21 +411,29 @@ def geroy_move_w(keys, control_keys):
 #     print(object['age'])
 #     object['age']+=1
 #     print(object['age'])
-gripTank = wrap.sprite.add('virusi', 457, 500, 'vieus1')
-grip_solderTank = {'id': gripTank, 'speed': 4, 'hp': 20}
+gripTank = wrap.sprite.add('bosses solders', 457, 500, tema.SKIN_WRAGA)
+grip_solderTank = {'id': gripTank, 'speed': 4, 'hp': 10}
 giper_ymnie_gribi.append(grip_solderTank)
 
-gripTank = wrap.sprite.add('virusi', 457, 500, 'vieus1')
+gripTank = wrap.sprite.add('bosses solders', 457, 500, tema.SKIN_WRAGA)
 grip_solderTank = {'id': gripTank, 'speed': 3, 'hp': 10}
 giper_ymnie_gribi.append(grip_solderTank)
 
 medical_kit_1 = wrap.sprite.add("kit's", 1090, 540, 'first_air_kit1')
-medical_kit_1n = {'+hp': 30, 'id': medical_kit_1}
+medical_kit_1n = {'+hp': 30, 'id': medical_kit_1,'predmet': 'apteka'}
 predmeti.append(medical_kit_1n)
 
 medical_kit_1 = wrap.sprite.add("kit's", 30, 50, 'first_air_kit1')
-medical_kit_1n = {'+hp': 30, 'id': medical_kit_1}
+medical_kit_1n = {'+hp': 30, 'id': medical_kit_1,'predmet': 'apteka'}
 predmeti.append(medical_kit_1n)
+
+medical_kit_1 = wrap.sprite.add("kit's", 1190, 640, 'ammo box1')
+medical_kit_1n = {'+ammo': 50, 'id': medical_kit_1,'predmet': 'patron'}
+predmeti.append(medical_kit_1n)
+
+ammo_kit_1 = wrap.sprite.add("kit's", 60, 30, 'ammo box1')
+ammo_kit_1n = {'+ammo': 50, 'id': ammo_kit_1,'predmet': 'patron'}
+predmeti.append(ammo_kit_1n)
 
 import wrap_py
 

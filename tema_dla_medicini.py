@@ -1,2 +1,3 @@
-SKIN_GEROA_MEDICINI='geriy 1 v maske'
-SKIN_PYLI_MEDICINI='anti virus potron'
+SKIN_GEROA='geriy 1 v maske'
+SKIN_PYLI='anti virus potron'
+SKIN_WRAGA='vieus1'
