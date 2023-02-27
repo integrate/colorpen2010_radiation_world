@@ -3,7 +3,7 @@ import tema_dla_woini_i_bitv as tema
 # import tema_dla_medicini as tema
 # world
 wrap.add_sprite_dir("sprite's")
-wrap.world.create_world(1920, 1080)
+wrap.world.create_world(800, 600)
 wrap.world.set_back_image("sprite's/texturi iz half life 1/water_half_life1.jpg")
 
 wrag2 = []
@@ -15,12 +15,12 @@ giper_ymnie_gribi = []
 predmeti = []
 
 
-semla = wrap.sprite.add('world', 960, 540, 'трава1')
+semla = wrap.sprite.add('world', 660, 540, 'трава1')
 
 # def medical_kit():
 
 
-wrap.sprite.add('money', 960, 100, 'shot grn')
+wrap.sprite.add('money', 660, 100, 'shot grn')
 
 hp_bar = wrap.sprite.add('barrs', 100, 100, 'O_hp')
 wrap.sprite.move_left_to(hp_bar, 10)
@@ -39,7 +39,7 @@ wrap.sprite.move_left_to(ammo_bar_perzents, wrap.sprite.get_right(hp_bar) + 17)
 wrap.sprite.move_top_to(ammo_bar_perzents, 77)
 
 # geroy_1
-geroy = wrap.sprite.add("human's", 1920 / 2, 1080 / 2, tema.SKIN_GEROA)
+geroy = wrap.sprite.add("human's", 800 / 2, 600 / 2, tema.SKIN_GEROA)
 
 
 def rock(x, y):
@@ -90,10 +90,10 @@ spisoc_domow()
 @wrap.always(100)
 def wrag_napal():
     for u in wrag2:
-        ygl = wrap.sprite.calc_angle_by_point(u, 960, 540)
+        ygl = wrap.sprite.calc_angle_by_point(u, 400, 300)
         idi(u, ygl, 3)
     for i in giper_ymnie_gribi:
-        ygl = wrap.sprite.calc_angle_by_point(i['id'], 960, 540)
+        ygl = wrap.sprite.calc_angle_by_point(i['id'], 400, 300)
         idi(i['id'], ygl, i['speed'])
 
 
@@ -101,7 +101,7 @@ def wrag_napal():
 
 def ono_stremnoe():
     for y in giper_ymnie_gribi:
-        ygl = wrap.sprite.calc_angle_by_point(y['id'], 960, 540)
+        ygl = wrap.sprite.calc_angle_by_point(y['id'], 400, 300)
         for t in spisoc_potronov:
             ygl_potrona = wrap.sprite.get_angle(t)
             hleb = wrap.sprite.is_collide_sprite(y['id'], t)
@@ -261,10 +261,10 @@ def ybiza():
     for m in spisoc_potronov:
         pylX = wrap.sprite.get_x(m)
         pylY = wrap.sprite.get_y(m)
-        if pylY <= 0 or pylY >= 1080:
+        if pylY <= 0 or pylY >= 600:
             wrap.sprite.remove(m)
             spisoc_potronov.remove(m)
-        elif pylX <= 0 or pylX >= 1920:
+        elif pylX <= 0 or pylX >= 800:
             wrap.sprite.remove(m)
             spisoc_potronov.remove(m)
 
@@ -296,7 +296,7 @@ def katleta():
 def zastrelu(pos_x, pos_y):
     global zapas_potronov
     if zapas_potronov > 0:
-        avtomat_potron = wrap.sprite.add('pyli', 960, 540, tema.SKIN_PYLI)
+        avtomat_potron = wrap.sprite.add('pyli', 400, 300, tema.SKIN_PYLI)
         wrap.sprite.set_angle(avtomat_potron, wrap.sprite.get_angle(geroy))
         what = wrap.sprite.get_angle(geroy)
         wrap.sprite.move_at_angle(avtomat_potron, what, 45)
@@ -357,8 +357,8 @@ def pavernis(who, pos_x, pos_y):
 def sdvin_mir():
     gerx = wrap.sprite.get_x(geroy)
     gery = wrap.sprite.get_y(geroy)
-    yholpox = gerx - 960
-    yholpoy = gery - 540
+    yholpox = gerx - 400
+    yholpoy = gery - 300
 
     wrap.sprite.move(semla, -yholpox, -yholpoy)
     wrap.sprite.move(geroy, -yholpox, -yholpoy)
